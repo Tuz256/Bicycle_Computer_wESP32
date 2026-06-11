@@ -37,6 +37,8 @@
 #include <WiFi.h>
 #include <ArduinoOTA.h>
 
+#include <images/images.h>
+
 // #################################################
 
 // #################  DEFINITIONS  #################
