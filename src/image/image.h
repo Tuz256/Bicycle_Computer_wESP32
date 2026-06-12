@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
-#ifndef IMAGES_H
-#define IMAGES_H
+#ifndef IMAGE_H
+#define IMAGE_H
 
 unsigned int gearW = 14;
 unsigned int gearH = 14;
