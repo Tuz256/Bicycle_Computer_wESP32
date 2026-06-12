@@ -1,19 +1,27 @@
 #ifndef MENU_H
 #define MENU_H
-#include <Arduino.h>
+
+#include "config.h"
 
 class MenuClass
 {
-private:
-    int lenght(String *arr);
-
 public:
-    MenuClass();
+    static MenuClass &getInstance();
+    void begin();
+    void update();
 
-    ~MenuClass();
+private:
+    MenuClass() {}
+    MenuState currentMenu = TIME;
+    bool enter_settings = false;
 
-    bool menuDown(String *arr);
-    bool menuUp(String *arr);
+    bool shouldBypassMenu(MenuState menu);
+    void nextMenu();
+    void previousMenu();
+    void handleLeftButton();
+    void handleRightButton();
+    void handleMiddleButton();
+    void tryOTAConnection();
 };
 
 #endif

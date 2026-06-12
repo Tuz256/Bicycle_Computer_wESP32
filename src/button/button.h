@@ -1,24 +1,26 @@
 #ifndef BUTTON_H
 #define BUTTON_H
-#include <Arduino.h>
+
+#include "config.h"
 
 class ButtonClass
 {
-private:
-    unsigned int DEBOUNCE_TIME;        // Default 200 (ms). If button ghosting occure, increase value. If you want click faster in a row, decrease value.
-    unsigned long lastButtonPressTime; // For tracking of when was last press
-    volatile bool buttonLeftPressed;   // Default false. Left button flag
-    volatile bool buttonRightPressed;  // Default false. Right button flag
-    volatile bool buttonMidPressed;    // Default false. Middle button flag
-
 public:
-    ButtonClass();
+    static ButtonClass &getInstance();
+    void begin();
 
-    ~ButtonClass();
+    bool isLeftPressed();
+    bool isRightPressed();
+    bool isMidPressed();
 
-    handleLeftButton();
-    handleMiddleButton();
-    handleRightButton();
+    static void IRAM_ATTR buttonInterrupt();
+
+private:
+    ButtonClass() {}
+    static volatile unsigned long lastButtonPressTime;
+    static volatile bool leftPressed;
+    static volatile bool rightPressed;
+    static volatile bool midPressed;
 };
 
 #endif
